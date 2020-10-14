@@ -1,5 +1,4 @@
 <?php
-	$std = fopen('./log.txt', 'a');
 	// requires php5
 	// 定义常量，此常量为images文件夹
 	define('UPLOAD_DIR', '/var/www/html/Learning_Number/images/');
@@ -22,10 +21,6 @@
 		$errmsg = $e->getMessage();
 		fwrite($std, $errmsg . '\n');
 	}
-	fwrite($std, $data);
-	fwrite($std, '\n');
-	fwrite($std, $success?$file:'fail');
-
-	fclose($std);
-
+	echo $data . '\n';
+	echo $success?$file:'fail';
 ?>
