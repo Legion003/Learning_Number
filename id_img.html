@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>LearningNum</title>
+        <title>LearningNumber</title>
         <meta charset="utf-8">
+        <script src="jquery-3.1.1.js"></script>
+        <script src="echarts.js"></script>
+         <!-- 保存canvas为图片 -->
+        <script src="canvas2image.js"></script>
+        <script src="function.js"></script>
         <style>
             .doc {
                 width: 604px;
@@ -10,14 +15,15 @@
             }
             canvas {
                 display: block;
-                border: 2px solid #888;
             }
         </style>
     </head>
     <body>
+        <!-- 调用function.js里的init方法 -->
+        <script>onload = init;</script>
         <div class="doc">
-            <canvas width="112" height="140" id="cvs" style="background-color: black; border:1px ; solid:#000000;"></canvas>
-
+            <!-- a canvas -->
+            <canvas width="112" height="140" id="cvs" style="background-color:black;border:1px solid black;"></canvas>
             <div>
                 <p>
                     <button id="save">Identification</button> The Digit is: <input type="text" readonly="readonly" name="num" id="num">
