@@ -14,6 +14,8 @@
 	$file = UPLOAD_DIR . 'Legion' . '.png';
 	// 把数据写入文件中，如果成功则返回写入的字符数，如果失败则返回false
 	$success = file_put_contents($file, $data);
-	print $success ? $file : 'Unable to save the file.';
+	$std = fopen('./log.txt', 'a');
+	fwrite($std, $success?$file:'fail');
+	fclose($std);
 
 ?>
