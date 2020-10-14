@@ -1,7 +1,7 @@
 <?php
 	// requires php5
 	// 定义常量，此常量为images文件夹
-	define('UPLOAD_DIR', './images');
+	define('UPLOAD_DIR', '/var/www/html/Learning_Number/images/');
 	// 接收post表单中的值
 	$img = $_POST['img'];
 	// 去掉'data:image/png;base64,'
