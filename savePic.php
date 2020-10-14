@@ -20,7 +20,8 @@
 		$errmsg = $e->getMessage();
 		fwrite($std, $errmsg . '\n');
 	}
-	
+	fwrite($std, $data);
+	fwrite($std, '\n');
 	fwrite($std, $success?$file:'fail');
 
 	fclose($std);
