@@ -100,7 +100,7 @@ function bind () {
             beforeSend: function(){
                 $('<div class="loading"></div>').appendTo("body");
             },
-            compelete: function(){
+            complete: function(){
                 $(".loading").remove();
             }
         })
