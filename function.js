@@ -53,37 +53,9 @@ function bind () {
         }
     };
     $save.onclick = function (e) {
-        var ztype = "jpeg",
-        w = 300,
-        h = 200;
-        var result = 5;
-        var ajax = null;
         // 返回Canvas图像对应的data URI，即base64地址
         var img = canvas.toDataURL();
         // 发送ajax请求
-        // 通过XMLHttpRequest可以在不刷新页面的情况下请求特定 URL
-        // if (window.XMLHttpRequest) {
-        //     // 主流浏览器提供了XMLHttpRequest对象
-        //     ajax = new XMLHttpRequest();
-        // } else {
-        //     //低版本的IE浏览器没有提供XMLHttpRequest对象，IE6以下
-        //     //所以必须使用IE浏览器的特定实现ActiveXObject
-        //     ajax = new ActiveXObject("Microsoft.XMLHTTP");
-        // }
-        // ajax.onreadystatechange = function() {
-        //     // readyState：状态值  0=>初始化 1=>载入 2=>载入完成 3=>解析 4=>完成
-        //     // status：状态码 由HTTP协议根据所提交的信息，服务器所返回的HTTP头信息代码
-        //     if (ajax.readyState == 4 && ajax.status == 200) {
-        //         alert(ajax.responseText);
-        //         result = ajax.responseText;
-        //         document.getElementById("num").value=result;
-        //     }
-        // }
-        // // 最后一个参数为true时为异步，执行send（）方法后不等待服务器的执行结果；false为同步
-        // ajax.open("POST", "savePic.php", true);
-        // ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        // // 将图片发送给php代码
-        // ajax.send("img=" + img);
         $.ajax({
             url: "savePic.php",
             type: "POST",
@@ -97,6 +69,7 @@ function bind () {
                 alert(data);
                 document.getElementById("num").value = data;
             },
+            // 此处是为了有一个loading的效果
             beforeSend: function(){
                 $('<div class="loading"></div>').appendTo("body");
             },
