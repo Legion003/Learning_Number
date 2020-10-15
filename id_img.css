@@ -19,7 +19,6 @@ body{
     text-align: center;
     text-shadow: #eb9060 1px 0 0, #eb9060 0 1px 0, #eb9060 -1px 0 0, #eb9060 0 -1px 0;
     color: white;
-    
     font-size: 40px;
     z-index: 1;
 }
@@ -59,6 +58,8 @@ input {
 }
 /* loading */
 #loading {
+    background-image: url('./loading.svg');
+    background-repeat: no-repeat;
     position: absolute;
     top: 40%;
     left: 70%;
