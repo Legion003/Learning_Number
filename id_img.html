@@ -8,29 +8,30 @@
          <!-- 保存canvas为图片 -->
         <script src="canvas2image.js"></script>
         <script src="function.js"></script>
-        <style>
-            .doc {
-                width: 604px;
-                margin: 0 auto;
-            }
-            canvas {
-                display: block;
-            }
-        </style>
+        <link rel="styleSheet" href="id_img.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     </head>
     <body>
         <!-- 调用function.js里的init方法 -->
         <script>onload = init;</script>
+        <div class="lap">
+            <h1 class="title">
+                Machine can identify your drawing number!
+            </h1>
+        </div>
         <div class="doc">
-            <!-- a canvas -->
-            <canvas width="112" height="140" id="cvs" style="background-color:black;border:1px solid black;"></canvas>
-            <div>
-                <p>
-                    <button id="save">Identification</button> The Digit is: <input type="text" readonly="readonly" name="num" id="num">
-                </p>
+            <div class="pic">
+                <!-- a canvas -->
+                <canvas id="cvs"></canvas>
+                <button id="save">Identification</button>
             </div>
+            <div class="result">
+                The Digit is: <input type="text" readonly="readonly" name="num" id="num">
+            </div>
+            
 
             <div id="imgs"></div>
+            
         </div>
     </body>
 </html>

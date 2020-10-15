@@ -7,6 +7,8 @@ function init () {
     canvas = document.getElementById('cvs');
     // 设置canvas的style
     canvas.style.backgroundColor = "black";
+    canvas.width = 112;
+    canvas.height = 140;
     // canvas.getContext(contextType)
     // 这里指定的contextType是'2d'，会创建并返回一个CanvasRenderingContext2D对象，主要用来进行2d绘制
     ctx = canvas.getContext('2d');
@@ -60,27 +62,47 @@ function bind () {
         var img = canvas.toDataURL();
         // 发送ajax请求
         // 通过XMLHttpRequest可以在不刷新页面的情况下请求特定 URL
-        if (window.XMLHttpRequest) {
-            // 主流浏览器提供了XMLHttpRequest对象
-            ajax = new XMLHttpRequest();
-        } else {
-            //低版本的IE浏览器没有提供XMLHttpRequest对象，IE6以下
-            //所以必须使用IE浏览器的特定实现ActiveXObject
-            ajax = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        ajax.onreadystatechange = function() {
-            // readyState：状态值  0=>初始化 1=>载入 2=>载入完成 3=>解析 4=>完成
-            // status：状态码 由HTTP协议根据所提交的信息，服务器所返回的HTTP头信息代码
-            if (ajax.readyState == 4 && ajax.status == 200) {
-                alert(ajax.responseText);
-                result = ajax.responseText;
-                document.getElementById("num").value=result;
+        // if (window.XMLHttpRequest) {
+        //     // 主流浏览器提供了XMLHttpRequest对象
+        //     ajax = new XMLHttpRequest();
+        // } else {
+        //     //低版本的IE浏览器没有提供XMLHttpRequest对象，IE6以下
+        //     //所以必须使用IE浏览器的特定实现ActiveXObject
+        //     ajax = new ActiveXObject("Microsoft.XMLHTTP");
+        // }
+        // ajax.onreadystatechange = function() {
+        //     // readyState：状态值  0=>初始化 1=>载入 2=>载入完成 3=>解析 4=>完成
+        //     // status：状态码 由HTTP协议根据所提交的信息，服务器所返回的HTTP头信息代码
+        //     if (ajax.readyState == 4 && ajax.status == 200) {
+        //         alert(ajax.responseText);
+        //         result = ajax.responseText;
+        //         document.getElementById("num").value=result;
+        //     }
+        // }
+        // // 最后一个参数为true时为异步，执行send（）方法后不等待服务器的执行结果；false为同步
+        // ajax.open("POST", "savePic.php", true);
+        // ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        // // 将图片发送给php代码
+        // ajax.send("img=" + img);
+        $.ajax({
+            url: "savePic.php",
+            type: "POST",
+            headers: {
+                "Content-type": "application/x-www-form-urlencoded"
+            },
+            data: {
+                img: img,
+            },
+            success: function(data){
+                alert(data);
+                document.getElementById("num").value = data;
+            },
+            beforeSend: function(){
+                $('<div class="loading"></div>').appendTo("body");
+            },
+            compelete: function(){
+                $(".loading").remove();
             }
-        }
-        // 最后一个参数为true时为异步，执行send（）方法后不等待服务器的执行结果；false为同步
-        ajax.open("POST", "savePic.php", true);
-        ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        // 将图片发送给php代码
-        ajax.send("img=" + img);
+        })
     }
 }
