@@ -14,11 +14,7 @@
 	// 确定图片保存路径
 	$file = UPLOAD_DIR . 'Legion' . '.png';
 	// 把数据写入文件中，如果成功则返回写入的字符数，如果失败则返回false
-	//$success = file_put_contents($file, $data);
-	//file_put_contents($file, 'haha');
-	$fopen = fopen($file, 'wb');
-	fwrite($fopen,$data);
-	fclose($fopen);
+	$success = file_put_contents($file, $data);
 	echo $file;
 	echo $data . '\n';
 ?>
