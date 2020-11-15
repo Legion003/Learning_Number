@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>LearningNumber</title>
+        <title>Numeral Recognition</title>
         <meta charset="utf-8">
-        <script src="jquery-3.1.1.js"></script>
+        <script src="./front_end/jquery-3.1.1.js"></script>
         <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
          <!-- 保存canvas为图片 -->
-        <script src="canvas2image.js"></script>
-        <script src="function.js"></script>
-        <link rel="styleSheet" href="id_img.css">
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <script src="./front_end/canvas2image.js"></script>
+        <script src="./front_end/function.js"></script>
+        <link rel="styleSheet" href="./front_end/id_img.css">
+        <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
     </head>
     <body>
         <!-- 调用function.js里的init方法 -->
         <script>onload = init;</script>
-        <div class="lap">
+        <div class="container">
+            <h1 class="title">Numeral Recognition.</h1>
+            <canvas id="cvs"></canvas>
+            <div class="btn">
+                <button id="save">submit</button>
+                <br>
+                <button id="clear">clear</button>
+            </div>
+            <p class="result" id="num">?</p>
+        </div>
+
+        
+        
+        <!-- <div class="lap">
             <h1 class="title">
                 Machine can identify your drawing number!
             </h1>
         </div>
         <div class="doc">
             <div class="pic">
-                <!-- a canvas -->
+                
                 <canvas id="cvs"></canvas>
                 <button id="save">Identification</button>
             </div>
@@ -29,9 +42,6 @@
                 The Digit is: <input type="text" readonly="readonly" name="num" id="num">
             </div>
             
-
-            <div id="imgs"></div>
-            
-        </div>
+        </div> -->
     </body>
 </html>
