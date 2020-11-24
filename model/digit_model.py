@@ -21,7 +21,7 @@ def load_data(proportion):
     """
     l = []
     # 读取数据
-    with open('tmp_img_encode.txt', 'r') as fp:
+    with open('/var/www/html/Learning_Number/data/train.csv', 'r') as fp:
         lines = csv.reader(fp)
         for line in lines:
             l.append(line)
@@ -127,8 +127,8 @@ if __name__ == '__main__':
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False)
 
-    # 使用显卡进行计算
-    model = Classifier().cuda()
+    
+    model = Classifier()
     # 设定交叉熵为损失函数
     loss = nn.CrossEntropyLoss()
     # 设定最优化方法，参数为模型中的参数和学习速率
@@ -142,9 +142,9 @@ if __name__ == '__main__':
             # 将梯度归零
             optimizer.zero_grad()
             # 相当于调用model中的forward函数
-            train_pred = model(data[0].cuda())
+            train_pred = model(data[0])
             # 计算loss
-            batch_loss = loss(train_pred, data[1].cuda())
+            batch_loss = loss(train_pred, data[1])
             # 计算梯度
             batch_loss.backward()
             # 更新参数
@@ -156,8 +156,8 @@ if __name__ == '__main__':
     # 使用模型进行预测
     with torch.no_grad():
         for i, data in enumerate(test_loader):
-            test_pred = model(data[0].cuda())
-            test_pred = np.argmax(test_pred.cpu().data.numpy(), axis=1)
+            test_pred = model(data[0])
+            test_pred = np.argmax(test_pred.data.numpy(), axis=1)
             for y in test_pred:
                 test_result.append(y)
     test_result = np.array(test_result, dtype=np.uint8)
@@ -172,7 +172,7 @@ if __name__ == '__main__':
     print(precision)
 
     # # 保存网络和参数
-    # torch.save(model, './cnn_model.pkl')
+    torch.save(model, './cnn_model.pkl')
 
 
 

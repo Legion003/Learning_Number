@@ -99,7 +99,7 @@ class ImgDataset(Dataset):
 
 
 # 读取model
-model = torch.load('./cnn_model.pkl')
+model = torch.load('/var/www/html/Learning_Number/model/cnn_model.pkl')
 model.eval()
 # 读取数据
 path = sys.argv[1]
@@ -116,7 +116,7 @@ data_loader = DataLoader(data_set, batch_size=1, shuffle=False)
 # 进行识别
 with torch.no_grad():
     for i, data in enumerate(data_loader):
-        prediction = model(data.cuda())
+        prediction = model(data)
         prediction = np.argmax(prediction.cpu().data.numpy(), axis=1)
-        print(prediction)
+        print(prediction[0])
 

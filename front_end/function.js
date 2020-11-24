@@ -71,14 +71,6 @@ function bind () {
                 }
                 
             }
-            //,
-            // // 此处是为了有一个loading的效果
-            // beforeSend: function(){
-            //     $('<div class="loading"></div>').appendTo("body");
-            // },
-            // complete: function(){
-            //     $(".loading").remove();
-            // }
         })
     };
     $clear.onclick = function(e) {
